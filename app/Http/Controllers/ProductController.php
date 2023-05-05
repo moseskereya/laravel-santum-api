@@ -27,7 +27,7 @@ class ProductController extends Controller
             'price' => 'required',
 
         ]);
-
+        
         return Product::create($request->all());
     }
 
@@ -54,6 +54,14 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        return Product::destroy($id);
+    }
+
+     /**
+     * Search the specified resource in storage.
+     */
+    public function search(string $name)
+    {
+        return Product::where('name', 'like', '%' .$name. '%' )->get();
     }
 }
